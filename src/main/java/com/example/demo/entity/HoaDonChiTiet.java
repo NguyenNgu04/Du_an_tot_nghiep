@@ -15,8 +15,8 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "hoa_don_chi_tiet")

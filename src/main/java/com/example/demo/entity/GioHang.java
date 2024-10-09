@@ -13,6 +13,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,8 +26,19 @@ public class GioHang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id gio_hang")
     private Long idGH;
+
     @ManyToOne
     @JoinColumn(name = "id_nguoi_dung")
     private NguoiDung nguoiDung;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoGH;
+
+    @Column(name = "trang_thai")
+    private String trangThaiGH;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatGH;
+
 
 }

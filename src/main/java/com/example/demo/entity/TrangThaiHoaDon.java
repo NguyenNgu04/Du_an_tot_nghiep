@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,5 +27,14 @@ public class TrangThaiHoaDon {
 
     @Column(name = "ten_trang_thai")
     private String tenTTHD;
+
+    @Column(name = "mo_ta")
+    private  String moTaTTHD;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoTTHD;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatTTHD;
 
 }

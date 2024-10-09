@@ -13,6 +13,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -28,6 +30,21 @@ public class HinhAnhSanPham {
     @ManyToOne
     @JoinColumn(name = "id_san_pham_chi_tiet")
     private SanPhamChiTiet sanPhamChiTiet;
+
+    @Column(name = "url_anh")
+    private String urlAnhHASP;
+
+    @Column(name = "mo_ta")
+    private  String moTaHASP;
+
+    @Column(name = "trang_thai")
+    private String trangThaiHASP;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoHASP;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatHASP;
 
 
 }

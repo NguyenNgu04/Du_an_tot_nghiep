@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,7 +24,20 @@ public class KichThuoc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_kich_thuoc")
     private Long idKT;
+
     @Column(name = "ten_kich_thuoc")
     private String tenKT;
+
+    @Column(name = "mo_ta")
+    private  String moTaKT;
+
+    @Column(name = "trang_thai")
+    private String trangThaiKT;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoKT;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatKT;
 
 }

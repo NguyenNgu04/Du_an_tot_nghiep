@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,7 +24,20 @@ public class MauSac {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mau_sac")
     private Long idMS;
+
     @Column(name = "ten_mau_sac")
     private String tenMS;
+
+    @Column(name = "mo_ta")
+    private  String moTaMS;
+
+    @Column(name = "trang_thai")
+    private String trangThaiMS;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoMS;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatMS;
 
 }

@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,4 +27,14 @@ public class DanhMuc {
 
     @Column(name = "ten_danh_muc")
     private String tenDM;
+
+    @Column(name = "mo_ta")
+    private  String moTaDM;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoDM;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatDM;
+
 }

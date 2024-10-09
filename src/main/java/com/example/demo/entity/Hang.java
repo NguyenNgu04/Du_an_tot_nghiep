@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,5 +27,14 @@ public class Hang {
 
     @Column(name = "ten_hang")
     private String tenH;
+
+    @Column(name = "mo_ta")
+    private  String moTa;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTao;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatH;
 
 }

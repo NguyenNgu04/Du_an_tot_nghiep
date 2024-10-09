@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,5 +27,14 @@ public class VaiTro {
 
     @Column(name = "ten")
     private String tenVT;
+
+    @Column(name = "mo_ta")
+    private  String moTaVT;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoVT;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatVT;
 
 }

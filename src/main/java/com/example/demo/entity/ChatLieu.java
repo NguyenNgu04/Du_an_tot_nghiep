@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,7 +24,21 @@ public class ChatLieu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chat_lieu")
     private Long idCL;
+
     @Column(name = "ten_chat_lieu")
     private String tenCL;
+
+    @Column(name = "mo_ta")
+    private String moTaCL;
+
+    @Column(name = "trang_thai")
+    private Double trangThaiCL;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTaoCL;
+
+    @Column(name = "ngay_cap_nhat")
+    private Date ngayCapNhatCL;
+
 
 }
