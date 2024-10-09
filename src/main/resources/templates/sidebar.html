@@ -1,0 +1,254 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="sidebar">
+        <div class="sidebar">
+            <ul>
+                <!-- Sidebar for Admin -->
+                <li th:if="${role == 'admin'}">
+                    <a href="#" th:href="@{/admin/thong-ke/trang-thong-ke}"><i class="fas fa-chart-pie"></i> Thống kê</a>
+                </li>
+                <li th:if="${role == 'admin'}">
+                    <a href="#" th:href="@{/admin/ban-hang/ban-hang-quay}"><i class="fas fa-check-circle"></i> Bán hàng tại quầy</a>
+                </li>
+                <li th:if="${role == 'admin'}">
+                    <a href="#" th:href="@{/admin/hoa-don/danh-sach-hoa-don}"><i class="fas fa-calendar-check"></i> Quản lý hóa đơn</a>
+                </li>
+                <li th:if="${role == 'admin'}">
+                    <a href="#" th:href="@{/admin/san-pham/danh-sach-san-pham}"><i class="fas fa-archive"></i> Sản phẩm</a>
+                </li>
+                <li th:if="${role == 'admin'}">
+                    <a href="#" th:href="@{/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang}"><i class="fas fa-history"></i>Quản lý tài khoản</a>
+                </li>
+
+    <!--             Sidebar for NhanVien-->
+                <li th:if="${role == 'nhan-vien'}">
+                    <a href="#" th:href="@{/nhan-vien/ban-hang/trang-ban-hang}"><i class="fas fa-pencil-alt"></i> Bán hàng tại quầy</a>
+                </li>
+                <li th:if="${role == 'nhan-vien'}">
+                    <a href="#" th:href="@{/nhan-vien/hoa-don/danh-sach-hoa-don}"><i class="fas fa-pencil-alt"></i> Quản lý hóa đơn</a>
+                </li>
+                <li th:if="${role == 'nhan-vien'}">
+                    <a href="#" th:href="@{/nhan-vien/tai-khoan/thong-tin-tai-khoan}"><i class="fas fa-pencil-alt"></i> Hồ sơ</a>
+                </li>
+
+    <!--            &lt;!&ndash; Sidebar for PR Head &ndash;&gt;-->
+    <!--            <li th:if="${role == 'khach-hang'}">-->
+    <!--                <a href="#" th:href="@{/truong-phong-pr/quan-ly-chu-de}"><i class="fas fa-tasks"></i> Quản lý chủ đề</a>-->
+    <!--            </li>-->
+
+
+            </ul>
+        </div>
+
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="https://previews.123rf.com/images/pixbold/pixbold2110/pixbold211000833/175825768-charity-logo-template-on-letter-hb-initial-unity-foundation-human-logo-sign-unity-team-work-logo.jpg"
+                 alt="Logo">
+        </div>
+        <ul class="menu">
+<!--        Sidebar for admin-->
+            <li th:if="${role == 'admin'}">
+                <a href="#" th:href="@{/admin/thong-ke/trang-thong-ke}">
+                    <i class="icon">📊</i>
+                    Thống Kê
+                </a>
+            </li>
+            <li th:if="${role == 'admin'}">
+                <a href="#" th:href="@{/admin/ban-hang/ban-hang-quay}">
+                    <i class="icon">🛍️</i>
+                    Bán Hàng Tại Quầy
+                </a>
+            </li>
+            <li th:if="${role == 'admin'}">
+                <a href="#" th:href="@{/admin/hoa-don/danh-sach-hoa-don}">
+                    <i class="icon">📄</i>
+                    Quản Lý Hóa Đơn
+                </a>
+            </li>
+            <li class="dropdown" th:if="${role == 'admin'}">
+                <a href="#">
+                    <i class="icon">📦</i>
+                    Quản Lý Sản Phẩm
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/san-pham/danh-sach-san-pham}">Sản Phẩm</a></li>
+                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/danh-muc/danh-sach-danh-muc}">Danh mục</a></li>
+<!--                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/thong-ke/trang-thong-ke}">Đế Giày</a></li>-->
+                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/hang/danh-sach-hang}">Thương Hiệu</a></li>
+                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/chat-lieu/danh-sach-chat-lieu}">Chất Liệu</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" th:if="${role == 'admin'}">
+                <a href="#">
+                    <i class="icon">👤</i>
+                    Quản Lý Tài Khoản
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang}">Tài khoản khách hàng</a></li>
+                    <li th:if="${role == 'admin'}"><a href="#" th:href="@{/admin/tai-khoan-nhan-vien/danh-sach-tai-khoan-nhan-vien}">Tài khoản nhân viên</a></li>
+                </ul>
+            </li>
+            <li th:if="${role == 'admin'}">
+                <a href="#" th:href="@{/admin/giam-gia/danh-sach-giam-gia}">
+                    <i class="icon">🏷️</i>
+                    Giảm Giá
+                </a>
+            </li>
+
+<!--        Sidebar for nhân viên-->
+
+            <li th:if="${role == 'nhan-vien'}">
+                <a href="#" th:href="@{/nhan-vien/ban-hang/trang-ban-hang}">
+                    <i class="icon">🛍️</i>
+                    Bán hàng tại quầy
+                </a>
+            </li>
+            <li th:if="${role == 'nhan-vien'}">
+                <a href="#" th:href="@{/nhan-vien/hoa-don/danh-sach-hoa-don}">
+                    <i class="icon">📄</i>
+                    Xử lý hóa đơn
+                </a>
+            </li>
+            <li th:if="${role == 'nhan-vien'}">
+                <a href="#" th:href="@{/nhan-vien/tai-khoan/thong-tin-tai-khoan}">
+                    <i class="icon">👤</i>
+                    Tài khoản
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo {
+            margin-left: 40 px;
+            text-align: center;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden; /* Đảm bảo ảnh nằm gọn trong vùng tròn */
+        }
+
+        .logo img {
+            /*width: 190px;*/
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Đảm bảo ảnh hiển thị đầy đủ trong hình tròn */
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu li {
+            padding: 15px 20px;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu li a .icon {
+            margin-right: 10px;
+        }
+
+        .menu li a:hover {
+            background-color: #9ee0a5;
+        }
+
+        .submenu {
+            list-style: none;
+            padding-left: 20px;
+            display: none;
+        }
+
+        .menu li.dropdown:hover .submenu {
+            display: block;
+        }
+
+        .arrow {
+            font-size: 12px;
+        }
+
+        .submenu li {
+            padding: 10px 0;
+        }
+
+        .submenu li a {
+            color: #d0d8e2;
+        }
+
+        .submenu li a:hover {
+            color: white;
+        }
+
+        .sidebar {
+            width: 230px;
+            height: 100%;
+            background-color: #4db39b;
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            transition: width 0.3s;
+        }
+
+        /*.sidebar ul {*/
+        /*    list-style-type: none;*/
+        /*    padding: 0;*/
+        /*}*/
+        /*.sidebar ul li {*/
+        /*    padding: 10px;*/
+        /*}*/
+        /*.sidebar ul li a {*/
+        /*    text-decoration: none;*/
+        /*    color: white;*/
+        /*    display: flex;*/
+        /*    align-items: center;*/
+        /*}*/
+        /*.sidebar ul li a:hover {*/
+        /*    background-color: #007bff;*/
+        /*}*/
+        /*.sidebar ul li a i {*/
+        /*    margin-right: 10px;*/
+        /*}*/
+        /*.sidebar ul li a.active {*/
+        /*    font-weight: bold;*/
+        /*    background-color: #0056b3;*/
+        /*}*/
+        /*    -------------*/
+        /*.sidebar {*/
+        /*    height: 100vh;*/
+        /*    width: 250px;*/
+        /*    position: fixed;*/
+        /*    top: 0;*/
+        /*    left: 0;*/
+        /*    background-color: #343a40;*/
+        /*    padding-top: 20px;*/
+        /*}*/
+        /*.sidebar a {*/
+        /*    color: white;*/
+        /*    padding: 10px;*/
+        /*    text-decoration: none;*/
+        /*    display: block;*/
+        /*}*/
+        /*.sidebar a:hover {*/
+        /*    background-color: #575d63;*/
+        /*}*/
+
+
+    </style>
+</div>
