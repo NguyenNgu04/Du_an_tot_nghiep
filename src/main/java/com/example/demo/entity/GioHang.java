@@ -25,20 +25,20 @@ public class GioHang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id gio_hang")
-    private Long idGH;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_nguoi_dung")
     private NguoiDung nguoiDung;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoGH;
+    private Date ngayTao;
 
     @Column(name = "trang_thai")
-    private String trangThaiGH;
+    private String trangThai;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatGH;
+    private Date ngayCapNhat;
 
 
 }

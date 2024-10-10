@@ -23,28 +23,28 @@ public class Voucher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_voucher")
-    private Long idVCH;
+    private Long id;
 
     @Column(name = "kieu_giam")
-    private Boolean kieuGiamVCH;
+    private Boolean kieuGiam;
 
     @Column(name = "gia_tri_giam")
-    private float giaTriGiamVCH;
+    private float giaTriGiam;
 
     @Column(name = "so_luong")
-    private int soLuonhVCH;
+    private int soLuong;
 
     @Column(name = "ngay_bat_dau")
-    private Date ngayBatDauVCH;
+    private Date ngayBatDau;
 
     @Column(name = "ngay_ket_thuc")
-    private Date ngayKetThucVCH;
+    private Date ngayKetThuc;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoVCH;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatVCH;
+    private Date ngayCapNhat;
 
 
 }

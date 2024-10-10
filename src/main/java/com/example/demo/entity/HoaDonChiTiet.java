@@ -25,9 +25,10 @@ public class HoaDonChiTiet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hoa_don_chi_tiet")
-    private Long idHDCT;
+    private Long id;
+
     @Column(name = "ma_hoa_don")
-    private String maHDCT;
+    private String ma;
 
     @ManyToOne
     @JoinColumn(name = "id_san_pham_chi_tiet")
@@ -38,22 +39,22 @@ public class HoaDonChiTiet {
     private HoaDon hoaDon;
 
     @Column(name = "so_luong")
-    private int soLuongHDCT;
+    private int soLuong;
 
     @Column(name = "tong_tien")
-    private float tongTienHDCT;
+    private float tongTien;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoHDCT;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatHDCT;
+    private Date ngayCapNhat;
 
     @Column(name = "trang_thai")
-    private boolean trangThaiHDCT;
+    private boolean trangThai;
 
     @Column(name = "mo_ta")
-    private String moTaHDCT;
+    private String moTa;
 
 
 }

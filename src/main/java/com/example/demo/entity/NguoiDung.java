@@ -25,43 +25,43 @@ public class NguoiDung {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_nguoi_dung")
-    private Long idND;
+    private Long id;
 
     @Column(name = "ten_nguoi_dung")
-    private String tenND;
+    private String ten;
 
     @Column(name = "ma_nguoi_dung")
-    private String maND;
+    private String ma;
 
     @Column(name = "Email")
-    private String emailND;
+    private String email;
 
     @Column(name = "sdt_nguoi_dung")
-    private String sdtND;
+    private String sdt;
 
     @Column(name = "Ngay_Sinh")
-    private Date ngaySinhND;
+    private Date ngaySinh;
 
     @Column(name = "Dia_Chi")
-    private String diaChiND;
+    private String diaChi;
 
     @Column(name = "Gioi_Tinh")
-    private Double gioiTinhND;
+    private Double gioiTinh;
 
     @Column(name = "Mat_Khau")
-    private String matKhauND;
+    private String matKhau;
 
     @Column(name = "Anh_Dai_Dien")
-    private String anhDaiDienND;
+    private String anhDaiDien;
 
     @Column(name = "Trang_thai")
-    private Double trangThaiND;
+    private Double trangThai;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoND;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatND;
+    private Date ngayCapNhat;
 
     @ManyToOne
     @JoinColumn(name = "id_vai_tro")

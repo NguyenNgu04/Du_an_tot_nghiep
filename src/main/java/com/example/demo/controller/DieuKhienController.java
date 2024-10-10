@@ -117,11 +117,11 @@ public class DieuKhienController {
 
     // KhachHang
 
-    @GetMapping("/khach-hang/trang-mua-hang/danh-sach-mua-hang")
+    @GetMapping("/khach-hang/trang-mua-hang/danh-sach-san-pham")
     public String trangMuaHangForKhachHang(Model model) {
         String role = "khach-hang"; // Hoặc lấy giá trị role từ session hoặc service
         model.addAttribute("role", role); // Truyền role xuống view
-        return "/khach-hang/trang-mua-hang/danh-sach-mua-hang";  // Trả về file HTML trong folder templates/admin
+        return "/khach-hang/trang-mua-hang/danh-sach-san-pham";  // Trả về file HTML trong folder templates/admin
     }
 
     @GetMapping("/khach-hang/gio-hang/danh-sach-san-pham-trong-gio-hang")
@@ -131,11 +131,11 @@ public class DieuKhienController {
         return "/khach-hang/gio-hang/danh-sach-san-pham-trong-gio-hang";  // Trả về file HTML trong folder templates/admin
     }
 
-    @GetMapping("/khach-hang/tai-khoan/danh-sach-san-pham")
+    @GetMapping("/khach-hang/tai-khoan/thong-tin-tai-khoan")
     public String trangTaiKhoanForKhachHang(Model model) {
         String role = "khach-hang"; // Hoặc lấy giá trị role từ session hoặc service
         model.addAttribute("role", role); // Truyền role xuống view
-        return "/khach-hang/tai-khoan/danh-sach-san-pham";  // Trả về file HTML trong folder templates/admin
+        return "/khach-hang/tai-khoan/thong-tin-tai-khoan";  // Trả về file HTML trong folder templates/admin
     }
 
 

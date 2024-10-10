@@ -23,21 +23,21 @@ public class KichThuoc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_kich_thuoc")
-    private Long idKT;
+    private Long id;
 
     @Column(name = "ten_kich_thuoc")
-    private String tenKT;
+    private String ten;
 
     @Column(name = "mo_ta")
-    private  String moTaKT;
+    private  String moTa;
 
     @Column(name = "trang_thai")
-    private String trangThaiKT;
+    private String trangThai;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoKT;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatKT;
+    private Date ngayCapNhat;
 
 }

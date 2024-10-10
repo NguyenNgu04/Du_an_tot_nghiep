@@ -23,21 +23,21 @@ public class MauSac {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mau_sac")
-    private Long idMS;
+    private Long id;
 
     @Column(name = "ten_mau_sac")
-    private String tenMS;
+    private String ten;
 
     @Column(name = "mo_ta")
-    private  String moTaMS;
+    private  String moTa;
 
     @Column(name = "trang_thai")
-    private String trangThaiMS;
+    private String trangThai;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoMS;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatMS;
+    private Date ngayCapNhat;
 
 }

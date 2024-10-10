@@ -26,29 +26,29 @@ public class GioHangChiTiet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_gio_hang_chi_tiet")
-    private Long idGHCT;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_gio_hang")
     private GioHang gioHang;
 
     @Column(name = "so_luong")
-    private int soLuongGHCT;
+    private int soLuong;
 
     @Column(name = "don_gia")
-    private Double donGiaGHCT;
+    private Double donGia;
 
     @Column(name = "thanh_tien")
-    private Double thanhTienGHCT;
+    private Double thanhTien;
 
     @Column(name = "trang_thai")
-    private String trangThaiGHCT;
+    private String trangThai;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoGHCT;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatGHCT;
+    private Date ngayCapNhat;
 
 
 

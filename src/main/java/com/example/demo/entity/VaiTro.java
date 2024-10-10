@@ -23,18 +23,18 @@ public class VaiTro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vai_tro")
-    private Long idVT;
+    private Long id;
 
     @Column(name = "ten")
-    private String tenVT;
+    private String ten;
 
     @Column(name = "mo_ta")
-    private  String moTaVT;
+    private  String moTa;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoVT;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatVT;
+    private Date ngayCapNhat;
 
 }

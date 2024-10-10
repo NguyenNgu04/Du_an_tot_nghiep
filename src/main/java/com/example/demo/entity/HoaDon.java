@@ -25,10 +25,10 @@ public class HoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hoa_don")
-    private Long idHD;
+    private Long id;
 
     @Column(name = "ma_hoa_don")
-    private String maHD;
+    private String ma;
 
     @ManyToOne
     @JoinColumn(name = "id_nguoi_dung")
@@ -38,43 +38,39 @@ public class HoaDon {
     @JoinColumn(name = "id_voucher")
     private Voucher voucher;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_dia_chi_van_chuyen")
-//    private
-
     @ManyToOne
     @JoinColumn(name = "id_trang_thai_hoa_don")
     private TrangThaiHoaDon trangThaiHoaDon;
 
     @Column(name = "ten_nguoi_nhan")
-    private String tenNguoiNhanHD;
+    private String tenNguoiNhan;
 
     @Column(name = "phi_ship")
-    private float phiShipHD;
+    private float phiShip;
 
     @Column(name = "dia_chi")
-    private String diaChiHD;
+    private String diaChi;
 
     @Column(name = "sdt_nguoi_nhan")
-    private String sdtNguoiNhatHD;
+    private String sdtNguoiNhat;
 
     @Column(name = "thanh_tien")
-    private float thanhTienHD;
+    private float thanhTien;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoHD;
+    private Date ngayTao;
 
     @Column(name = "mo_ta")
-    private String moTaHD;
+    private String moTa;
 
     @Column(name = "trang_thai")
-    private Double trangThaiHD;
+    private Double trangThai;
 
     @Column(name = "ngay_thanh_toan")
-    private Date ngayThanhToanHD;
+    private Date ngayThanhToan;
 
     @ManyToOne
     @JoinColumn(name = "id_pt_thanh_toan_hoa_don")
-    private PTThanhToanHoaDon hoaDon;
+    private PTThanhToanHoaDon ptThanhToanHoaDon;
 
 }

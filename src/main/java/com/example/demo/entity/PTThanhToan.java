@@ -23,27 +23,27 @@ public class PTThanhToan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pt_thanh_toan")
-    private Long idPTTT;
+    private Long id;
 
     @Column(name = "ma_thanh_toan")
-    private String maPTTT;
+    private String ma;
 
     @Column(name = "ten_phuong_thuc")
-    private String tenPTTT;
+    private String ten;
 
     @Column(name = "noi_dung_thanh_toan")
-    private String noiDungPTTT;
+    private String noiDung;
 
     @Column(name = "ngay_thanh_toan")
-    private Date ngayPTTT;
+    private Date ngayThanhToan;
 
     @Column(name = "trang_thai_thanh_toan")
-    private Double trangThaiPTTT;
+    private Double trangThai;
 
     @Column(name = "phi_giao_dich")
-    private float phiGiaoDichPTTT;
+    private float phiGiaoDich;
 
     @Column(name = "thong_tin_them")
-    private String thongTinThemPTTT;
+    private String thongTinThem;
 
 }

@@ -25,28 +25,28 @@ public class SanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_san_pham")
-    private Long idSP;
+    private Long id;
 
     @Column(name = "ten_san_pham")
-    private String tenSP;
+    private String ten;
 
     @Column(name = "so_luong_ton")
-    private int SoLuongTonSP;
+    private int SoLuongTon;
 
     @Column(name = "gia_ban")
-    private float giaBanSp;
+    private float giaBan;
 
     @Column(name = "url_anh")
-    private String urlAnhSP;
+    private String urlAnh;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoSP;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatSP;
+    private Date ngayCapNhat;
 
     @Column(name = "mo_ta")
-    private String moTaSP;
+    private String moTa;
 
     @ManyToOne
     @JoinColumn(name = "id_danh_muc")

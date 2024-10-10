@@ -25,26 +25,26 @@ public class HinhAnhSanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hinh_anh_san_pham")
-    private Long idHASP;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_san_pham_chi_tiet")
     private SanPhamChiTiet sanPhamChiTiet;
 
     @Column(name = "url_anh")
-    private String urlAnhHASP;
+    private String urlAnh;
 
     @Column(name = "mo_ta")
-    private  String moTaHASP;
+    private  String moTa;
 
     @Column(name = "trang_thai")
-    private String trangThaiHASP;
+    private String trangThai;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoHASP;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatHASP;
+    private Date ngayCapNhat;
 
 
 }

@@ -23,22 +23,22 @@ public class ChatLieu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chat_lieu")
-    private Long idCL;
+    private Long id;
 
     @Column(name = "ten_chat_lieu")
-    private String tenCL;
+    private String ten;
 
     @Column(name = "mo_ta")
-    private String moTaCL;
+    private String moTa;
 
     @Column(name = "trang_thai")
-    private Double trangThaiCL;
+    private Double trangThai;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoCL;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatCL;
+    private Date ngayCapNhat;
 
 
 }

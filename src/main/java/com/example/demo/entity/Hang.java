@@ -23,10 +23,10 @@ public class Hang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hang")
-    private Long idH;
+    private Long id;
 
     @Column(name = "ten_hang")
-    private String tenH;
+    private String ten;
 
     @Column(name = "mo_ta")
     private  String moTa;
@@ -35,6 +35,6 @@ public class Hang {
     private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatH;
+    private Date ngayCapNhat;
 
 }

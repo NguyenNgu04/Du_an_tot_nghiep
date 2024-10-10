@@ -25,13 +25,13 @@ public class LichSuHoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_lich_su_hoa_don")
-    private Long idLSHD;
+    private Long id;
 
     @Column(name = "so_tien_thanh_toan")
-    private float soTienThanhToanLSHD;
+    private float soTienThanhToan;
 
     @Column(name = "ngay_giao_dich")
-    private Date ngayGiaoDichLSHD;
+    private Date ngayGiaoDich;
 
     @ManyToOne
     @JoinColumn(name = "id_hoa_don_chi_tiet")

@@ -23,18 +23,18 @@ public class DanhMuc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_danh_muc")
-    private Long idDM;
+    private Long id;
 
     @Column(name = "ten_danh_muc")
-    private String tenDM;
+    private String ten;
 
     @Column(name = "mo_ta")
-    private  String moTaDM;
+    private  String moTa;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoDM;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatDM;
+    private Date ngayCapNhat;
 
 }

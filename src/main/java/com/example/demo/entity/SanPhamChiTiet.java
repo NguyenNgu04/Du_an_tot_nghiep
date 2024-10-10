@@ -26,22 +26,22 @@ public class SanPhamChiTiet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_san_pham_chi_tiet")
-    private Long idSPCT;
+    private Long id;
 
     @Column(name = "so_luong")
-    private int soLuongSPCT;
+    private int soLuong;
 
     @Column(name = "ngay_tao")
-    private Date ngayTaoSPCT;
+    private Date ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhatSPCT;
+    private Date ngayCapNhat;
 
     @Column(name = "trang_thai")
-    private boolean trangThaiSPCT;
+    private boolean trangThaiS;
 
     @Column(name = "mo_ta")
-    private String moTaSPCT;
+    private String moTa;
 
     @ManyToOne
     @JoinColumn(name = "id_kich_thuoc")
