@@ -64,7 +64,7 @@ public class HoaDon {
     private String moTa;
 
     @Column(name = "trang_thai")
-    private Double trangThai;
+    private Boolean trangThai;
 
     @Column(name = "ngay_thanh_toan")
     private Date ngayThanhToan;

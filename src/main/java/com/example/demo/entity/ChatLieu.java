@@ -32,7 +32,7 @@ public class ChatLieu {
     private String moTa;
 
     @Column(name = "trang_thai")
-    private Double trangThai;
+    private Boolean trangThai;
 
     @Column(name = "ngay_tao")
     private Date ngayTao;

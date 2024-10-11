@@ -55,7 +55,7 @@ public class NguoiDung {
     private String anhDaiDien;
 
     @Column(name = "Trang_thai")
-    private Double trangThai;
+    private Boolean trangThai;
 
     @Column(name = "ngay_tao")
     private Date ngayTao;

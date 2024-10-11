@@ -38,7 +38,7 @@ public class PTThanhToan {
     private Date ngayThanhToan;
 
     @Column(name = "trang_thai_thanh_toan")
-    private Double trangThai;
+    private Boolean trangThai;
 
     @Column(name = "phi_giao_dich")
     private float phiGiaoDich;

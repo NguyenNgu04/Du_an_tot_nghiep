@@ -17,37 +17,31 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "voucher")
+@Table(name = "khach_hang")
 @Entity
-public class Voucher {
+public class KhachHang {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_voucher")
+    @Column(name = "id_khach_hang")
     private Long id;
 
-    @Column(name = "kieu_giam")
-    private Boolean kieuGiam;
+    @Column(name = "ma_khach_hang")
+    private String ma;
 
-    @Column(name = "gia_tri_giam")
-    private Float giaTriGiam;
+    @Column(name = "ten_khach_hang")
+    private String ten;
 
-    @Column(name = "so_luong")
-    private int soLuong;
-    
-    @Column(name = "trang_thai")
-    private int trangThai;
+    @Column(name = "sdt")
+    private  String sdt;
 
-    @Column(name = "ngay_bat_dau")
-    private Date ngayBatDau;
-
-    @Column(name = "ngay_ket_thuc")
-    private Date ngayKetThuc;
+    @Column(name = "email")
+    private  String email;
 
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhat;
-
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
 }
