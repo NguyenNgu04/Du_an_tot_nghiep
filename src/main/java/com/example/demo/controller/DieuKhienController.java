@@ -15,19 +15,19 @@ public class DieuKhienController {
         return "/admin/ban-hang/ban-hang-quay";  // Trả về file HTML trong folder templates/admin
     }
 
-    @GetMapping("/admin/chat-lieu/danh-sach-chat-lieu")
-    public String trangChatLieu(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/chat-lieu/danh-sach-chat-lieu";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/chat-lieu/danh-sach-chat-lieu")
+//    public String trangChatLieu(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/chat-lieu/danh-sach-chat-lieu";  // Trả về file HTML trong folder templates/admin
+//    }
 
-    @GetMapping("/admin/danh-muc/danh-sach-danh-muc")
-    public String trangDanhMuc(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/danh-muc/danh-sach-danh-muc";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/danh-muc/danh-sach-danh-muc")
+//    public String trangDanhMuc(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/danh-muc/danh-sach-danh-muc";  // Trả về file HTML trong folder templates/admin
+//    }
 
     @GetMapping("/admin/giam-gia/danh-sach-giam-gia")
     public String trangGiamGia(Model model) {
@@ -36,12 +36,12 @@ public class DieuKhienController {
         return "/admin/giam-gia/danh-sach-giam-gia";  // Trả về file HTML trong folder templates/admin
     }
 
-    @GetMapping("/admin/hang/danh-sach-hang")
-    public String trangHang(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/hang/danh-sach-hang";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/hang/danh-sach-hang")
+//    public String trangHang(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/hang/danh-sach-hang";  // Trả về file HTML trong folder templates/admin
+//    }
 
     @GetMapping("/admin/hoa-don/danh-sach-hoa-don")
     public String trangHoaDon(Model model) {
@@ -50,19 +50,19 @@ public class DieuKhienController {
         return "/admin/hoa-don/danh-sach-hoa-don";  // Trả về file HTML trong folder templates/admin
     }
 
-    @GetMapping("/admin/kich-thuoc/danh-sach-kich-thuoc")
-    public String trangKichThuoc(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/kich-thuoc/danh-sach-kich-thuoc";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/kich-thuoc/danh-sach-kich-thuoc")
+//    public String trangKichThuoc(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/kich-thuoc/danh-sach-kich-thuoc";  // Trả về file HTML trong folder templates/admin
+//    }
 
-    @GetMapping("/admin/mau-sac/danh-sach-mau-sac")
-    public String trangMauSac(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/mau-sac/danh-sach-mau-sac";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/mau-sac/danh-sach-mau-sac")
+//    public String trangMauSac(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/mau-sac/danh-sach-mau-sac";  // Trả về file HTML trong folder templates/admin
+//    }
 
     @GetMapping("/admin/tai-khoan-nhan-vien/danh-sach-tai-khoan-nhan-vien")
     public String trangTaiKhoanNhanVien(Model model) {

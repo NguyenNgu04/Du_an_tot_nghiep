@@ -33,7 +33,7 @@ public class Voucher {
 
     @Column(name = "so_luong")
     private int soLuong;
-    
+
     @Column(name = "trang_thai")
     private int trangThai;
 
