@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.fragment;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,26 +64,26 @@ public class DieuKhienController {
 //        return "/admin/mau-sac/danh-sach-mau-sac";  // Trả về file HTML trong folder templates/admin
 //    }
 
-    @GetMapping("/admin/tai-khoan-nhan-vien/danh-sach-tai-khoan-nhan-vien")
-    public String trangTaiKhoanNhanVien(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/tai-khoan-nhan-vien/danh-sach-tai-khoan-nhan-vien";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/tai-khoan-nhan-vien/danh-sach-tai-khoan-nhan-vien")
+//    public String trangTaiKhoanNhanVien(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/tai-khoan-nhan-vien/danh-sach-tai-khoan-nhan-vien";  // Trả về file HTML trong folder templates/admin
+//    }
 
-    @GetMapping("/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang")
-    public String trangTaiKhoanKhachHang(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang")
+//    public String trangTaiKhoanKhachHang(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang";  // Trả về file HTML trong folder templates/admin
+//    }
 
-    @GetMapping("/admin/san-pham/danh-sach-san-pham")
-    public String trangSanPham(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/san-pham/danh-sach-san-pham";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/san-pham/danh-sach-san-pham")
+//    public String trangSanPham(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/san-pham/danh-sach-san-pham";  // Trả về file HTML trong folder templates/admin
+//    }
 
     @GetMapping("/admin/thong-ke/trang-thong-ke")
     public String tranThongKe(Model model) {

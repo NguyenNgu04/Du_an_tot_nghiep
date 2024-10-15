@@ -1,32 +1,35 @@
-package com.example.demo.controller;
+package com.example.demo.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/admin/kich-thuoc")
-public class KichThuocController {
+@RequestMapping("/admin/danh-muc")
+public class DanhMucController {
 
-    @GetMapping("/danh-sach-kich-thuoc")
-    public String trangKichThuoc(Model model) {
+    @GetMapping("/danh-sach-danh-muc")
+    public String trangChatLieu(Model model) {
         String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
         model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/kich-thuoc/danh-sach-kich-thuoc";  // Trả về file HTML trong folder templates/admin
+        return "/admin/danh-muc/danh-sach-danh-muc";  // Trả về file HTML trong folder templates/admin
     }
 
-    @GetMapping("/them-kich-thuoc")
-    public String trangThemKichThuoc(Model model) {
+    @GetMapping("/them-danh-muc")
+    public String trangThemDanhMuc(Model model){
         String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
         model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/kich-thuoc/them-kich-thuoc";  // Trả về file HTML trong folder templates/admin
+        return "/admin/danh-muc/them-danh-muc";
+
     }
 
-    @GetMapping("/sua-kich-thuoc")
-    public String trangSuaKichThuoc(Model model) {
+    @GetMapping("/sua-danh-muc")
+    public String trangSuaDanhMuc(Model model){
         String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
         model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/kich-thuoc/sua-kich-thuoc";  // Trả về file HTML trong folder templates/admin
+        return "/admin/danh-muc/sua-danh-muc";
+
     }
 }
