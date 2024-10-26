@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa sản phẩm chi tiết</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Các style tùy chỉnh có thể được đặt ở đây */
         body {
             background-color: #f8f9fa;
         }
+
         .card-header {
             background-color: #4db39b;
             color: white;
             font-weight: bold;
         }
+
         .badge-success {
             background-color: #4db39b;
         }
@@ -33,28 +35,65 @@
                 Thêm sản phẩm chi tiết
             </div>
             <div class="card-body">
-                <form class="row g-3">
-                    <div class="col-md-6">
-                        <label for="categoryName" class="form-label">Tên màu sắc:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang sử dụng</option>
-                            <option value="inactive">Không sử dụng</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success"><i class="fa-solid fa-floppy-disk"></i> Thêm</button>
+                <form class="row g-3" th:object="${spct}" th:action="@{/admin/san-pham/them-san-pham-chi-tiet}"  method="post">
+                    <div class="container-fiuld">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="col ">
+                                    <label class="form-label">Sản phẩm:</label>
+                                    <select class="form-select" th:field="*{sanPham.id}">
+                                        <option value="">Chọn</option>
+                                        <option th:each="sp : ${listSP}" th:value="${sp.id}"
+                                                th:text="${sp.ten}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Số lượng:</label>
+                                    <input class="form-control" type="number" th:field="*{soLuong}" placeholder="0">
+                                    <span class="text-danger" th:if="${#fields.hasErrors('soLuong')}"
+                                          th:errors="*{soLuong}"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Mô tả:</label>
+                                    <textarea class="form-control" type="text" rows="2" th:field="*{moTa}"></textarea>
+
+                                </div>
+                                <div class="col-md-2 align-self-end mt-3">
+                                    <button type="submit" class="btn badge-success" id="statusMessage"><i
+                                            class="fa-solid fa-floppy-disk"></i> Thêm
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="col">
+                                    <label class="form-label">Chất liệu:</label>
+                                    <select class="form-select" th:field="*{chatLieu.id}">
+                                        <option th:each="cl : ${listCL}" th:value="${cl.id}"
+                                                th:text="${cl.ten}"></option>
+
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Kích Thước:</label>
+                                    <select class="form-select" th:field="*{kichThuoc.id}">
+                                        <option th:each="kt : ${listKT}" th:value="${kt.id}"
+                                                th:text="${kt.ten}"></option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Màu sắc:</label>
+                                    <select class="form-select" th:field="*{mauSac.id}">
+                                        <option th:each="ms : ${listMS}" th:value="${ms.id}" th:text="${ms.ten}"
+                                                th:style="'background-color:' + ${ms.moTa} + '; color: #fff;'"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
-
 </div>
 
 

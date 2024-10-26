@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa sản phẩm</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Các style tùy chỉnh có thể được đặt ở đây */
         body {
             background-color: #f8f9fa;
         }
+
         .card-header {
             background-color: #4db39b;
             color: white;
             font-weight: bold;
         }
+
         .badge-success {
             background-color: #4db39b;
+        }
+
+        .custom-alert{
+            padding: 0 8px;
+            margin: 0;
+            background: none;
+            border: none;
+            color: red;
         }
     </style>
 </head>
@@ -33,21 +42,72 @@
                 Sửa sản phẩm
             </div>
             <div class="card-body">
-                <form class="row g-3">
+                <form class="row g-3" method="post" action="/admin/san-pham/sua-san-pham" enctype="multipart/form-data">
+                    <!-- Thêm input ẩn để chứa ID sản phẩm -->
+                    <input type="hidden" name="id" th:value="${sanPham.id}"/>
                     <div class="col-md-6">
-                        <label for="categoryName" class="form-label">Tên màu sắc:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
+                        <label for="productName" class="form-label">Tên sản phẩm:</label>
+                        <input type="text" class="form-control" id="productName" placeholder="Tên sản phẩm"
+                               name="tenSanPham" th:value="${sanPham.ten}" >
+                        <div th:if="${errorTenSanPham}" class="alert alert-danger custom-alert" role="alert" >
+                            <span th:text="${errorTenSanPham}"></span>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang sử dụng</option>
-                            <option value="inactive">Không sử dụng</option>
+                    <div class="col-md-6">
+                        <label for="productQuantity" class="form-label">Số lượng tồn:</label>
+                        <input type="number" class="form-control" id="productQuantity" placeholder="Số lượng sản phẩm"
+                               name="soLuong" th:value="${sanPham.soLuongTon}" >
+                        <div th:if="${errorSoLuong}" class="alert alert-danger custom-alert" role="alert" >
+                            <span th:text="${errorSoLuong}"></span>
+                        </div>
+                        <div th:if="${errorSoLuongNull}" class="alert alert-danger custom-alert" role="alert" >
+                            <span th:text="${errorSoLuongNull}"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="productPrice" class="form-label">Giá bán:</label>
+                        <input type="number" class="form-control" id="productPrice" placeholder="Giá bán" name="giaBan"
+                               th:value="${sanPham.giaBan}" >
+                        <div th:if="${errorGiaBan}" class="alert alert-danger custom-alert" role="alert" >
+                            <span th:text="${errorGiaBan}"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="urlAnh" class="form-label">Tải lên ảnh sản phẩm:</label>
+                        <input type="text" class="form-control" id="urlAnh" name="urlAnh" th:value="${sanPham.urlAnh}">
+                        <div th:if="${errorUrlAnh}" class="alert alert-danger custom-alert" role="alert" >
+                            <span th:text="${errorUrlAnh}"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Danh mục sản phẩm:</label>
+                        <select class="form-select" aria-label="Default select example" name="idDanhMuc">
+                            <option value="" disabled>---- Chọn danh mục ----</option>
+                            <th:block th:each="danhMuc : ${listDM}">
+                                <option th:value="${danhMuc.id}" th:text="${danhMuc.ten}"
+                                        th:selected="${sanPham.danhMuc.id == danhMuc.id}"></option>
+                            </th:block>
                         </select>
                     </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="brandSelect" class="form-label">Thương hiệu:</label>
+                        <select class="form-select" id="brandSelect" aria-label="Chọn thương hiệu sản phẩm"
+                                name="idHang" >
+                            <option value="" disabled>---- Chọn thương hiệu ----</option>
+                            <th:block th:each="hang : ${listTH}">
+                                <option th:value="${hang.id}" th:text="${hang.ten}"
+                                        th:selected="${sanPham.hang.id == hang.id}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="moTa" class="form-label">Mô tả:</label>
+                        <textarea name="moTa" id="moTa" class="form-control" style="height: 264px;"
+                                  th:text="${sanPham.moTa}"></textarea>
+                    </div>
                     <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success"><i class="fa-solid fa-floppy-disk"></i> Thêm</button>
+                        <button type="submit" class="btn badge-success"><i class="fa-solid fa-floppy-disk"></i> Lưu
+                        </button>
                     </div>
                 </form>
             </div>
@@ -55,7 +115,6 @@
 
     </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -20,6 +20,25 @@
         .badge-success {
             background-color: #4db39b;
         }
+        .custom-alert {
+            position: fixed;
+            top: 20px;  /* Cách từ đỉnh */
+            right: 20px;  /* Cách từ bên phải */
+            background-color: #4CAF50;  /* Màu nền thông báo thành công */
+            color: white;  /* Màu chữ */
+            padding: 15px;  /* Padding xung quanh */
+            border-radius: 5px;  /* Bo góc */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Đổ bóng */
+            z-index: 9999;  /* Đảm bảo thông báo luôn nằm trên cùng */
+            opacity: 0;  /* Ban đầu ẩn */
+            visibility: hidden;  /* Không hiển thị */
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;  /* Hiệu ứng chuyển đổi */
+        }
+
+        .custom-alert {
+            opacity: 1;  /* Hiển thị thông báo */
+            visibility: visible;  /* Đặt thông báo là có thể nhìn thấy */
+        }
     </style>
 </head>
 <body>
@@ -27,30 +46,31 @@
 <div th:replace="fragment/navbar :: navbar"></div>
 
 <div class="content" style="margin-left: 220px; padding: 20px;">
+
+    <!--    Thông báo-->
+    <div class="custom-alert success" id="statusMessage" th:text="${Add}"
+         th:if="${Add != null}"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="custom-alert success" id="statusMessage" th:text="${Update}"
+         th:if="${Update != null}">ok</div>
+    <!--    Thông báo-->
+
     <div class="container mt-3">
         <h3>Quản lý thương hiệu</h3>
 
         <!-- Filter Section -->
-        <div class="card mb-4">
+        <div class="card mb-4" >
             <div class="card-header">
                 <i class="fas fa-filter"></i> Bộ lọc
             </div>
             <div class="card-body">
-                <form class="row g-3">
+                <form class="row g-3" th:action="@{/admin/hang/danh-sach-hang}" method="get">
                     <div class="col-md-6">
                         <label for="categoryName" class="form-label">Tên thương hiệu:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang sử dụng</option>
-                            <option value="inactive">Không sử dụng</option>
-                        </select>
+                        <input type="text" class="form-control" id="categoryName" name="key"
+                               placeholder="Tìm kiếm" th:value="${key}">
                     </div>
                     <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success">Lọc</button>
+                        <button type="submit" class="btn badge-success">Lọc</button>
                     </div>
                 </form>
             </div>
@@ -60,7 +80,7 @@
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-list"></i> Danh sách thương hiệu
-                <a type="button" class="btn btn-light float-end" th:href="@{/admin/hang/them-hang}">+ Thêm</a>
+                <a type="button" class="btn btn-light float-end" th:href="@{/admin/hang/trang-them-hang}">+ Thêm</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -68,44 +88,47 @@
                     <tr>
                         <th>STT</th>
                         <th>Tên Thương Hiệu</th>
+                        <th>Mô tả</th>
                         <th>Ngày cập nhật</th>
-                        <th>Trạng Thái</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Giày Slip-on sneaker13</td>
-                        <td>20-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
+                    <tr th:each="h,i : ${itemPage}">
+                        <td th:text="${i.count}"></td>
+                        <td th:text="${h.ten}"></td>
+                        <td th:text="${h.moTa}"></td>
+                        <td th:text="${#dates.format(h.ngayCapNhat, 'yyyy/MM/dd')}"></td>
                         <td>
-                            <a class="btn badge-success" th:href="@{/admin/hang/sua-hang}"><i class="fas fa-edit"></i></a>
+                            <a class="btn badge-success" th:href="@{/admin/hang/trang-sua-hang/{id} (id = ${h.id})}"><i class="fas fa-edit"></i></a>
                             <button class="btn badge-success"><i class="fas fa-eye"></i></button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Giày slip-on</td>
-                        <td>19-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
-                        <td>
-                            <button class="btn badge-success"><i class="fas fa-edit"></i></button>
-                            <button class="btn badge-success"><i class="fas fa-eye"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sneaker High - top</td>
-                        <td>09-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
-                        <td>
-                            <button class="btn badge-success"><i class="fas fa-edit"></i></button>
-                            <button class="btn badge-success"><i class="fas fa-eye"></i></button>
-                        </td>
-                    </tr>
+
                     </tbody>
                 </table>
+                <div class="pagination justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/admin/hang/danh-sach-hang(page=${currentPage - 1}, key =${key})}">Trước</a>
+                        </li>
+                        <li class="page-item" th:if="${totalPages == 0}">
+                            <span class="page-link">0</span>
+                        </li>
+                        <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:unless="${totalPages == 0}"
+                            th:classappend="${i == currentPage} ? 'active'">
+                            <a class="page-link"
+                               th:href="@{/admin/hang/danh-sach-hang(page=${i}, key =${key})}"
+                               th:text="${i + 1}">1</a>
+                        </li>
+                        <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/admin/hang/danh-sach-hang(page=${currentPage + 1}, key =${key})}">Tiếp</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

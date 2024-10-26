@@ -1,62 +1,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+                <ul class="navbar-nav  mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #333333">
+                            Tài Khoản
+                            <i class="fa-regular fa-user" style="color: #333333"></i>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/author-switch">Author Switch</a>
-                </li>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                            <li>
+                                <a class="dropdown-item" href="/author-switch">
+                                    Đăng xuất <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-            </ul>
+                </ul>
+            </div>
         </div>
-        <ul class="navbar-nav" style="text-align: right;">
-            <li class="nav-item" >
-                <span class="name">Nguyễn Tiểu Ngư</span>
-                <a href="#"><img src="https://imgcdn.stablediffusionweb.com/2024/9/24/3d53c6ef-5598-468c-9de6-c4480a5a4dc0.jpg" alt="Profile Picture" class="profile-pic"></a>
-            </li>
-
-        </ul>
     </nav>
-
 
 
     <style>
         .navbar {
             background-color: #bcf8e7;
             margin-left: 230px;
-        }
-
-        .navbar-nav .nav-link {
-            font-weight: normal;
-            transition: font-weight 0.3s;
-            color: #038377;
-        }
-
-        .navbar-nav .nav-link:hover {
-            font-weight: bold;
-            color: #5d5a5a;
-        }
-
-
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-            object-fit: cover;
-
-        }
-
-        .name {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 10px;
         }
 
     </style>

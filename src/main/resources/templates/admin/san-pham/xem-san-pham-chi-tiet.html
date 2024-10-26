@@ -20,6 +20,30 @@
         .badge-success {
             background-color: #4db39b;
         }
+        .status-green {
+            background-color: #d4f8e8; /* Màu nền xanh nhạt */
+            color: #28A745; /* Màu chữ xanh lá */
+            border: 1px solid #28A745; /* Đường viền màu xanh lá */
+            border-radius: 15px; /* Bo tròn các góc */
+            padding: 5px 10px; /* Khoảng cách bên trong button */
+            font-size: 14px; /* Kích thước chữ */
+            font-weight: bold; /* Chữ đậm */
+            display: inline-block; /* Hiển thị nội dung như một khối nhỏ */
+            text-align: center; /* Canh giữa nội dung */
+
+        }
+
+        .status-yellow {
+            background-color: #e1e3bb; /* Màu nền xanh nhạt */
+            color: #bea502; /* Màu chữ xanh lá */
+            border: 1px solid #bea502; /* Đường viền màu xanh lá */
+            border-radius: 15px; /* Bo tròn các góc */
+            padding: 5px 10px; /* Khoảng cách bên trong button */
+            font-size: 14px; /* Kích thước chữ */
+            font-weight: bold; /* Chữ đậm */
+            display: inline-block; /* Hiển thị nội dung như một khối nhỏ */
+            text-align: center; /* Canh giữa nội dung */
+        }
     </style>
 </head>
 <body>
@@ -30,26 +54,46 @@
     <div class="container mt-3">
         <div class="card mb-4">
             <div class="card-header">
-                Xem sản phẩm chi tiết
+                <i class="fas fa-list"></i> Danh sách sản phẩm chi tiết
+                <a type="button" class="btn btn-light float-end" th:href="@{/admin/san-pham/danh-sach-san-pham}" >Quay lại</a>
+
             </div>
             <div class="card-body">
-                <form class="row g-3">
-                    <div class="col-md-6">
-                        <label for="categoryName" class="form-label">Tên màu sắc:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang sử dụng</option>
-                            <option value="inactive">Không sử dụng</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success"><i class="fa-solid fa-floppy-disk"></i> Thêm</button>
-                    </div>
-                </form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá bán</th>
+                        <th>Kích thước</th>
+                        <th>Màu sắc</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="spct,i : ${itemPage}">
+                        <td th:text="${i.count}"></td>
+                        <td>Ảnh spct</td>
+                        <td th:text="${spct.sanPham.ten}"></td>
+                        <td th:text="${spct.soLuong}"></td>
+                        <td th:text="${spct.giaBan}"></td>
+                        <td th:text="${spct.kichThuoc}"></td>
+                        <td th:text="${spct.mauSac.ten}"></td>
+                        <td th:text="${spct.mauSac.ten}"></td>
+                        <td>
+                            <span th:if="${nd.trangThai == true}" class="status-green">Đang hoạt động</span>
+                            <span th:if="${nd.trangThai == false}" class="status-yellow">Ngừng hoạt động</span>
+                        </td>
+                        <td>
+                            <a class="btn badge-success" th:href="@{/admin/san-pham/sua-san-pham-chi-tiet}"><i
+                                    class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 

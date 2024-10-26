@@ -23,7 +23,7 @@ public class VaiTro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vai_tro")
-    private Long id;
+    private Integer id;
 
     @Column(name = "ten")
     private String ten;

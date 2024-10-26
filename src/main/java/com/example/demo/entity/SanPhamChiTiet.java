@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -29,6 +31,7 @@ public class SanPhamChiTiet {
     private Long id;
 
     @Column(name = "so_luong")
+    @Min(value = 0, message = "Số lượng tối thiểu phải là 0")
     private int soLuong;
 
     @Column(name = "ngay_tao")
@@ -48,7 +51,7 @@ public class SanPhamChiTiet {
     private KichThuoc kichThuoc;
 
     @ManyToOne
-    @JoinColumn(name = "id_mau_sac")
+    @JoinColumn(name = "id_mau_sac" )
     private MauSac mauSac;
 
     @ManyToOne

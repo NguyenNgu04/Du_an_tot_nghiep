@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Các style tùy chỉnh có thể được đặt ở đây */
+        .filter-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -16,7 +26,97 @@
 <div th:replace="fragment/navbar :: navbar"></div>
 
 <div class="content" style="margin-left: 220px; padding: 20px;">
-    <h1>Trang giảm giá</h1>
+    <div class="container">
+        <div class="filter-section">
+            <div class="filter-title">Quản lý đợt giảm giá</div>
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="code" class="form-label">Mã khuyến mại:</label>
+                        <input type="text" class="form-control" id="code" placeholder="Tìm kiếm">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="discountValue" class="form-label">Giá trị giảm:</label>
+                        <input type="text" class="form-control" id="discountValue" placeholder="Tìm kiếm">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="startDate" class="form-label">Từ ngày:</label>
+                        <input type="date" class="form-control" id="startDate">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="name" class="form-label">Tên khuyến mại:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Tìm kiếm">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="status" class="form-label">Trạng thái:</label>
+                        <select class="form-select" id="status">
+                            <option>Tất cả</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="endDate" class="form-label">Đến ngày:</label>
+                        <input type="date" class="form-control" id="endDate">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Làm mới</button>
+            </form>
+        </div>
+        <div class="container mt-4">
+            <h4>Danh sách đợt giảm giá</h4>
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-primary">+ Thêm</button>
+            </div>
+            <table class="table table-bordered">
+                <thead class="table-header">
+                <tr>
+                    <th>STT</th>
+                    <th>Mã</th>
+                    <th>Tên đợt giảm giá</th>
+                    <th>Giá trị giảm</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
+                    <th>Ngày cập nhật</th>
+                    <th>Trạng Thái</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>KM607321310</td>
+                    <td>DUNG NA</td>
+                    <td>80%</td>
+                    <td>09:37:10 17-12-2023</td>
+                    <td>09:37:58 31-12-2023</td>
+                    <td>09:38:02 19-12-2023</td>
+                    <td><span class="status-active">Đang kích hoạt</span></td>
+                    <td class="action-buttons">
+                        <button class="btn btn-warning">✏️</button>
+                        <button class="btn btn-danger">🗑️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>KM111645091</td>
+                    <td>Sale 19</td>
+                    <td>20%</td>
+                    <td>09:14:33 19-12-2023</td>
+                    <td>09:14:33 31-12-2023</td>
+                    <td>09:14:48 19-12-2023</td>
+                    <td><span class="status-active">Đang kích hoạt</span></td>
+                    <td class="action-buttons">
+                        <button class="btn btn-warning">✏️</button>
+                        <button class="btn btn-danger">🗑️</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
 </div>
 
 

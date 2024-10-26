@@ -52,7 +52,7 @@ public class HoaDon {
     private String diaChi;
 
     @Column(name = "sdt_nguoi_nhan")
-    private String sdtNguoiNhat;
+    private String sdtNguoiNhan;
 
     @Column(name = "thanh_tien")
     private float thanhTien;

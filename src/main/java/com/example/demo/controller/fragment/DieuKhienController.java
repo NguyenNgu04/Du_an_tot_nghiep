@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DieuKhienController {
 
     //Admin
-    @GetMapping("/admin/ban-hang/ban-hang-quay")
-    public String trangBanHang(Model model) {
-        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
-        model.addAttribute("role", role); // Truyền role xuống view
-        return "/admin/ban-hang/ban-hang-quay";  // Trả về file HTML trong folder templates/admin
-    }
+//    @GetMapping("/admin/ban-hang/ban-hang-quay")
+//    public String trangBanHang(Model model) {
+//        String role = "admin"; // Hoặc lấy giá trị role từ session hoặc service
+//        model.addAttribute("role", role); // Truyền role xuống view
+//        return "/admin/ban-hang/ban-hang-quay";  // Trả về file HTML trong folder templates/admin
+//    }
 
 //    @GetMapping("/admin/chat-lieu/danh-sach-chat-lieu")
 //    public String trangChatLieu(Model model) {

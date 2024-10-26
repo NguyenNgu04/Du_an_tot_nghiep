@@ -5,20 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý màu sắc</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Các style tùy chỉnh có thể được đặt ở đây */
         body {
             background-color: #f8f9fa;
         }
+
         .card-header {
             background-color: #4db39b;
             color: white;
             font-weight: bold;
         }
+
         .badge-success {
             background-color: #4db39b;
+        }
+
+        .custom-alert {
+            position: fixed;
+            top: 20px; /* Cách từ đỉnh */
+            right: 20px; /* Cách từ bên phải */
+            background-color: #4CAF50; /* Màu nền thông báo thành công */
+            color: white; /* Màu chữ */
+            padding: 15px; /* Padding xung quanh */
+            border-radius: 5px; /* Bo góc */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+            z-index: 9999; /* Đảm bảo thông báo luôn nằm trên cùng */
+            opacity: 0; /* Ban đầu ẩn */
+            visibility: hidden; /* Không hiển thị */
+            transition: opacity 0.5s ease-in-out, visibility 0.5s; /* Hiệu ứng chuyển đổi */
+        }
+
+        .custom-alert {
+            opacity: 1; /* Hiển thị thông báo */
+            visibility: visible; /* Đặt thông báo là có thể nhìn thấy */
+        }
+
+        .status-green {
+            background-color: #d4f8e8; /* Màu nền xanh nhạt */
+            color: #28A745; /* Màu chữ xanh lá */
+            border: 1px solid #28A745; /* Đường viền màu xanh lá */
+            border-radius: 15px; /* Bo tròn các góc */
+            padding: 5px 10px; /* Khoảng cách bên trong button */
+            font-size: 14px; /* Kích thước chữ */
+            font-weight: bold; /* Chữ đậm */
+            display: inline-block; /* Hiển thị nội dung như một khối nhỏ */
+            text-align: center; /* Canh giữa nội dung */
+
+        }
+
+        .status-yellow {
+            background-color: #e1e3bb; /* Màu nền xanh nhạt */
+            color: #bea502; /* Màu chữ xanh lá */
+            border: 1px solid #bea502; /* Đường viền màu xanh lá */
+            border-radius: 15px; /* Bo tròn các góc */
+            padding: 5px 10px; /* Khoảng cách bên trong button */
+            font-size: 14px; /* Kích thước chữ */
+            font-weight: bold; /* Chữ đậm */
+            display: inline-block; /* Hiển thị nội dung như một khối nhỏ */
+            text-align: center; /* Canh giữa nội dung */
         }
     </style>
 </head>
@@ -27,6 +74,15 @@
 <div th:replace="fragment/navbar :: navbar"></div>
 
 <div class="content" style="margin-left: 220px; padding: 20px;">
+
+    <!--    Thông báo-->
+    <div class="custom-alert success" id="statusMessage" th:text="${Add}"
+         th:if="${Add != null}"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="custom-alert success" id="statusMessage" th:text="${Update}"
+         th:if="${Update != null}">ok
+    </div>
+    <!--    Thông báo-->
+
     <div class="container mt-3">
         <h3>Quản lý màu sắc</h3>
 
@@ -37,20 +93,21 @@
             </div>
             <div class="card-body">
                 <form class="row g-3">
-                    <div class="col-md-6">
+                    <div class="col-md-6" th:action="@{/admin/mau-sac/danh-sach-mau-sac}" method="get">
                         <label for="categoryName" class="form-label">Tên màu sắc:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
+                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm" name="key"
+                               th:value="${key}">
                     </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang sử dụng</option>
-                            <option value="inactive">Không sử dụng</option>
+                    <div class="col-md-6">
+                        <label for="categoryName" class="form-label">Trạng thái:</label>
+                        <select id="status" class="form-select" name="trangThai" th:value="${trangThai}">
+                            <option value="" th:selected="${trangThai == null}">Tất cả</option>
+                            <option value="true" th:selected="${trangThai == true}">Đang hoạt động</option>
+                            <option value="false" th:selected="${trangThai == false}">Ngừng hoạt động</option>
                         </select>
                     </div>
                     <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success">Lọc</button>
+                        <button type="submit" class="btn badge-success">Lọc</button>
                     </div>
                 </form>
             </div>
@@ -60,7 +117,8 @@
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-list"></i> Danh sách màu sắc
-                <a type="button" class="btn btn-light float-end" th:href="@{/admin/mau-sac/them-mau-sac}">+ Thêm</a>
+                <a type="button" class="btn btn-light float-end" th:href="@{/admin/mau-sac/trang-them-mau-sac}">+
+                    Thêm</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -68,44 +126,57 @@
                     <tr>
                         <th>STT</th>
                         <th>Tên Màu Sắc</th>
+                        <th>Mô tả</th>
                         <th>Ngày cập nhật</th>
-                        <th>Trạng Thái</th>
+                        <th>Trạng thái</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Giày Slip-on sneaker13</td>
-                        <td>20-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
+                    <tr th:each="ms,i : ${itemPage}">
+                        <td th:text="${i.count}"></td>
+                        <td th:text="${ms.ten}"></td>
                         <td>
-                            <a class="btn badge-success" th:href="@{/admin/mau-sac/sua-mau-sac}"><i class="fas fa-edit" ></i></a>
-                            <button class="btn badge-success"><i class="fas fa-eye"></i></button>
+                            <span th:text="${ms.moTa}"
+                                    th:style="'background-color:' + ${ms.moTa} + '; color: white; padding: 5px; display: inline-block;'"></span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Giày slip-on</td>
-                        <td>19-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
+
+                        <td th:text="${#dates.format(ms.ngayCapNhat, 'yyyy/MM/dd')}"></td>
                         <td>
-                            <button class="btn badge-success"><i class="fas fa-edit"></i></button>
-                            <button class="btn badge-success"><i class="fas fa-eye"></i></button>
+                            <span th:if="${ms.trangThai == true}" class="status-green">Đang hoạt động</span>
+                            <span th:if="${ms.trangThai == false}" class="status-yellow">Ngừng hoạt động</span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sneaker High - top</td>
-                        <td>09-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
                         <td>
-                            <button class="btn badge-success"><i class="fas fa-edit"></i></button>
+                            <a class="btn badge-success"
+                               th:href="@{/admin/mau-sac/trang-sua-mau-sac/{id} (id = ${ms.id})}"><i
+                                    class="fas fa-edit"></i></a>
                             <button class="btn badge-success"><i class="fas fa-eye"></i></button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <div class="pagination justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/admin/mau-sac/danh-sach-mau-sac(page=${currentPage - 1}, key =${key}, trangThai= ${trangThai})}">Trước</a>
+                        </li>
+                        <li class="page-item" th:if="${totalPages == 0}">
+                            <span class="page-link">0</span>
+                        </li>
+                        <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:unless="${totalPages == 0}"
+                            th:classappend="${i == currentPage} ? 'active'">
+                            <a class="page-link"
+                               th:href="@{/admin/mau-sac/danh-sach-mau-sac(page=${i}, key =${key}, trangThai= ${trangThai})}"
+                               th:text="${i + 1}">1</a>
+                        </li>
+                        <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/admin/mau-sac/danh-sach-mau-sac(page=${currentPage + 1}, key =${key}, trangThai= ${trangThai})}">Tiếp</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

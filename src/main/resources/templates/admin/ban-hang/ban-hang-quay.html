@@ -5,19 +5,234 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UDPM</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Các style tùy chỉnh có thể được đặt ở đây */
+        body {
+            background-color: #f8f9fa;
+        }
 
+        .card-header {
+            background-color: #4db39b;
+            color: white;
+            font-weight: bold;
+        }
+
+        .badge-success {
+            background-color: #4db39b;
+        }
     </style>
 </head>
-<body >
+<body>
 <div th:replace="fragment/sidebar :: sidebar"></div>
 <div th:replace="fragment/navbar :: navbar"></div>
 
-<div class="content" style="margin-left: 220px; padding: 20px; ">
-    <h1>Trang Bán Hàng</h1>
+<div class="content" style="margin-left: 220px; padding: 20px;">
+
+    <div class="container mt-3">
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <form th:object="${hoaDon}" th:action="@{/admin/ban-hang/tao-hd}" method="post">
+                    <button type="submit" class="btn btn-light">+ Tạo hóa đơn</button>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"
+                             style=" box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.2); text-align: center; height: 240px">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="hd : ${listHD}">
+                                    <td>
+                                        <a th:text="${hd.ma}"
+                                           th:href="@{/admin/ban-hang/list-hdct/{id} (id = ${hd.id})}"
+                                           style="text-decoration: none; color: #333333"
+                                        ></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-11">
+                            <div class="container mt-2 mb-2">
+                                <div class="row mb-3">
+                                    <div class="col-12" style="text-align: right">
+                                        <button class="btn badge-success">Thêm sản phẩm</button>
+                                        <button class="btn badge-success">Quét QR</button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <table class="table ">
+                                        <thead>
+                                        <tr th:each="hdct : ${listHDCT}">
+                                            <td scope="col">STT - <span class="text-danger" th:text="${hdct.ma}"></span>
+                                            </td>
+                                            <td scope="col">Sản phẩm</td>
+                                            <td scope="col">Số lượng</td>
+                                            <td scope="col">Tổng tiền</td>
+                                            <td scope="col">Hành động</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="hdct,i : ${listHDCT}">
+                                            <td th:text="${i.count}"></td>
+                                            <td th:text="${hdct.sanPhamChiTiet.sanPham.ten}"></td>
+                                            <td th:text="${hdct.soLuong}"></td>
+                                            <td th:text="${hdct.tongTien}"></td>
+                                            <td>
+                                                <a class="btn badge-success"><i class="fa-regular fa-trash-can"></i></a>
+                                                <a class="btn badge-success"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
+
+                                        <tr th:each="hdct : ${listHDCT}">
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                Tổng tiền :
+                                            </td>
+                                            <td>
+                                                <span class="text-danger">VNĐ</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-5">
+                            <div class="container-fuild">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <h5>Khách hàng</h5>
+                                    </div>
+                                    <div class="col-8">
+                                            <button class="btn btn-secondary">Chọn tài khoản</button>
+                                            <button class="btn badge-success">Thêm khách hàng</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <form>
+                                <div class="mt-2">
+                                    <div class="container-fuild">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label class="form-lable">Tên khách hàng:</label>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="">...</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-4">
+                                                <label class="form-lable">Số điện thoại:</label>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="">...</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-4">
+                                                <label class="form-lable">Email:</label>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="">...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-7">
+                            <div class="container-fuild">
+                                <div class="row">
+                                    <div class="col-4 mb-1">
+                                        <h5>Thông tin thanh toán</h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <form>
+                                <div class="mt-2">
+                                    <div class="container-fuild">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <label class="form-lable">Tiền hàng:</label>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="">0VND</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-7">
+                                                <label class="form-lable">Được giảm:</label>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="">0VND</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-7">
+                                                <label class="form-lable">Khách trả:</label>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="">0VND</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4 mb-3">
+                                            <div class="col-3">
+                                                <label class="form-lable">Mã giảm giá:</label>
+                                            </div>
+                                            <div class="col-4">
+                                                <input class="form-control" placeholder="Mã voucher">
+                                            </div>
+                                            <div class="col-1">
+                                                <button class="btn badge-success">Chọn</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-7">
+                                                <label class="form-lable">Tổng tiền: </label>
+                                            </div>
+                                            <div class="col-5">
+                                                <span class="text-danger">0VND</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4" style="text-align: center">
+                                            <div class="col-12">
+                                                <button class="btn badge-success">Thanh toán</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

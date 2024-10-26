@@ -34,22 +34,31 @@
                 Sửa chất liệu
             </div>
             <div class="card-body">
-                <form class="row g-3">
+                <form class="row g-3" th:object="${chatLieu}" th:action="@{/admin/chat-lieu/sua-chat-lieu}" method="post">
                     <div class="col-md-6">
                         <label for="categoryName" class="form-label">Tên chất liệu:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
+                        <input type="text" class="form-control" id="categoryName" placeholder="Nike" th:field="*{ten}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('ten')}" th:errors="*{ten}"></span>
                     </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang sử dụng</option>
-                            <option value="inactive">Không sử dụng</option>
+                    <div class="col-md-6">
+                        <label for="categoryName" class="form-label">Mô tả:</label>
+                        <input type="text" class="form-control" id="categoryName" placeholder="Mô tả..." th:field="*{moTa}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="categoryName" class="form-label">Trạng thái:</label>
+                        <select id="status" class="form-select" name="trangThai" th:field="*{trangThai}" >
+                            <option value="true">Đang hoạt động</option>
+                            <option value="false">Ngừng hoạt động</option>
                         </select>
                     </div>
+
                     <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                        <button type="submit" class="btn badge-success" id="statusMessage"><i class="fa-solid fa-floppy-disk"></i> Sửa</button>
                     </div>
+                    <div class="col-md-6">
+                        <input type="text" th:field="*{id}" hidden>
+                    </div>
+
                 </form>
             </div>
         </div>

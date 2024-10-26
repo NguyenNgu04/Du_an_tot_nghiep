@@ -16,19 +16,72 @@
         .card-header {
             background-color: #4db39b;
             color: white;
-            font-weight: bold;
         }
 
         .badge-success {
             background-color: #4db39b;
         }
+
+        .status-green {
+            background-color: #d4f8e8; /* Màu nền xanh nhạt */
+            color: #28A745; /* Màu chữ xanh lá */
+            border: 1px solid #28A745; /* Đường viền màu xanh lá */
+            border-radius: 15px; /* Bo tròn các góc */
+            padding: 5px 10px; /* Khoảng cách bên trong button */
+            font-size: 14px; /* Kích thước chữ */
+            font-weight: bold; /* Chữ đậm */
+            display: inline-block; /* Hiển thị nội dung như một khối nhỏ */
+            text-align: center; /* Canh giữa nội dung */
+
+        }
+
+        .status-yellow {
+            background-color: #e1e3bb; /* Màu nền xanh nhạt */
+            color: #bea502; /* Màu chữ xanh lá */
+            border: 1px solid #bea502; /* Đường viền màu xanh lá */
+            border-radius: 15px; /* Bo tròn các góc */
+            padding: 5px 10px; /* Khoảng cách bên trong button */
+            font-size: 14px; /* Kích thước chữ */
+            font-weight: bold; /* Chữ đậm */
+            display: inline-block; /* Hiển thị nội dung như một khối nhỏ */
+            text-align: center; /* Canh giữa nội dung */
+        }
+
+        .custom-alert {
+            position: fixed;
+            top: 20px;  /* Cách từ đỉnh */
+            right: 20px;  /* Cách từ bên phải */
+            background-color: #4CAF50;  /* Màu nền thông báo thành công */
+            color: white;  /* Màu chữ */
+            padding: 15px;  /* Padding xung quanh */
+            border-radius: 5px;  /* Bo góc */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Đổ bóng */
+            z-index: 9999;  /* Đảm bảo thông báo luôn nằm trên cùng */
+            opacity: 0;  /* Ban đầu ẩn */
+            visibility: hidden;  /* Không hiển thị */
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;  /* Hiệu ứng chuyển đổi */
+        }
+
+        .custom-alert {
+            opacity: 1;  /* Hiển thị thông báo */
+            visibility: visible;  /* Đặt thông báo là có thể nhìn thấy */
+        }
+
     </style>
 </head>
 <body>
 <div th:replace="fragment/sidebar :: sidebar"></div>
 <div th:replace="fragment/navbar :: navbar"></div>
 
+<!--    Thông báo-->
+<div class="custom-alert success" id="statusMessage" th:text="${Add}"
+     th:if="${Add != null}"><i class="fa-solid fa-circle-check"></i></div>
+<div class="custom-alert success" id="statusMessage" th:text="${Update}"
+     th:if="${Update != null}">ok</div>
+<!--    Thông báo-->
+
 <div class="content" style="margin-left: 220px; padding: 20px;">
+
     <div class="container mt-3">
         <h3>Quản lý tài khoản khách hàng</h3>
 
@@ -38,34 +91,24 @@
                 <i class="fas fa-filter"></i> Bộ lọc
             </div>
             <div class="card-body">
-                <form class="row g-3">
-                    <div class="col-md-7">
+                <form class="row g-3" th:action="@{/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang}" method="get">
+                    <div class="col-md-2 align-self-end">
+                        <button type="submit" class="btn badge-success">Tìm kiếm</button>
+                    </div>
+                    <div class="col-md-5">
                         <label for="categoryName" class="form-label">Tên và số điện thoại khách hàng:</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm">
+                        <input type="text" class="form-control" id="categoryName" placeholder="Tìm kiếm" name="key"
+                               th:value="${key}">
                     </div>
                     <div class="col-md-5">
                         <label for="status" class="form-label">Trạng thái:</label>
-                        <select id="status" class="form-select">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang hoạt động</option>
-                            <option value="inactive">Ngừng hoạt động</option>
+                        <select id="status" class="form-select" name="trangThai">
+                            <option value="" th:selected="${trangThai == null}">Tất cả</option>
+                            <option value="true" th:selected="${trangThai == true}">Đang hoạt động</option>
+                            <option value="false" th:selected="${trangThai == false}">Ngừng hoạt động</option>
                         </select>
                     </div>
-                    <div class="col-md-1">
-                        <label class="form-label">Ngày sinh:</label>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Từ:</label>
-                        <input type="date" class="form-control" placeholder="dd/MM/yyyy">
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Đến:</label>
-                        <input type="date" class="form-control" placeholder="dd/MM/yyyy">
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2 align-self-end">
-                        <button type="button" class="btn badge-success">Lọc</button>
-                    </div>
+
                 </form>
             </div>
         </div>
@@ -74,77 +117,71 @@
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-list"></i> Danh sách tài khoản khách hàng
-                <a type="button" class="btn btn-light float-end" th:href="@{/admin/tai-khoan-nhan-vien/them-tai-khoan-nhan-vien}">+ Thêm</a>
+                <a type="button" class="btn btn-light float-end"
+                   th:href="@{/admin/tai-khoan-khach-hang/trang-them-tai-khoan-khach-hang}">+ Thêm</a>
             </div>
+
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>STT</th>
+                        <th>Mã khách hàng</th>
                         <th>Ảnh</th>
                         <th>Tên khách hàng</th>
-                        <th>CCCD</th>
                         <th>SDT</th>
                         <th>Ngày sinh</th>
+                        <th>Giới tính</th>
                         <th>Trạng Thái</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Giày Slip-on sneaker13</td>
-                        <td>20-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
+                    <tr th:each="nd,i : ${itemPage}">
+                        <td th:text="${i.count}"></td>
+                        <td th:text="${nd.ma}"></td>
                         <td>
-                            <a class="btn badge-success" th:href="@{/admin/tai-khoan-khach-hang/sua-tai-khoan-khach-hang}"><i
+                            <!--                            <img th:src="${nd.anhDaiDien}" alt="Anh dai dien">-->ảnh đại điện
+                        </td>
+                        <td th:text="${nd.ten}"></td>
+                        <td th:text="${nd.sdt}"></td>
+                        <td th:text="${nd.ngaySinh}"></td>
+                        <td th:text="${nd.gioiTinh == true ? 'Nam' : 'Nữ'}"></td>
+                        <td>
+                            <span th:if="${nd.trangThai == true}" class="status-green">Đang hoạt động</span>
+                            <span th:if="${nd.trangThai == false}" class="status-yellow">Ngừng hoạt động</span>
+                        </td>
+                        <td>
+                            <a class="btn badge-success"
+                               th:href="@{/admin/tai-khoan-khach-hang/trang-sua-tai-khoan-khach-hang/{id} (id = ${nd.id})}"><i
                                     class="fas fa-edit"></i></a>
-                            <button class="btn badge-success"><i class="fas fa-eye"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Giày slip-on</td>
-                        <td>19-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
-                        <td>
-                            <button class="btn badge-success"><i class="fas fa-edit"></i></button>
-                            <button class="btn badge-success"><i class="fas fa-eye"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sneaker High - top</td>
-                        <td>09-12-2023</td>
-                        <td><span class="badge bg-success">Đang sử dụng</span></td>
-                        <td>
-                            <button class="btn badge-success"><i class="fas fa-edit"></i></button>
                             <button class="btn badge-success"><i class="fas fa-eye"></i></button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-<!--                <div class="pagination justify-content-center">-->
-<!--                    <ul class="pagination">-->
-<!--                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">-->
-<!--                            <a class="page-link"-->
-<!--                               th:href="@{/nhan-vien-pr/quan-ly-danh-sach-bai-viet-pr(page=${currentPage - 1}, key =${key}, idChuDe = ${idChuDe}, trangThai = ${trangThai}, idDotVietBai = ${idDotVietBai})}">Trước</a>-->
-<!--                        </li>-->
-<!--                        <li class="page-item" th:if="${totalPages == 0}">-->
-<!--                            <span class="page-link">0</span>-->
-<!--                        </li>-->
-<!--                        <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"-->
-<!--                            th:unless="${totalPages == 0}"-->
-<!--                            th:classappend="${i == currentPage} ? 'active'">-->
-<!--                            <a class="page-link" th:href="@{/nhan-vien-pr/quan-ly-danh-sach-bai-viet-pr(page=${i}, key =${key}, idChuDe = ${idChuDe}, trangThai = ${trangThai}, idDotVietBai = ${idDotVietBai})}"-->
-<!--                               th:text="${i + 1}">1</a>-->
-<!--                        </li>-->
-<!--                        <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">-->
-<!--                            <a class="page-link"-->
-<!--                               th:href="@{/nhan-vien-pr/quan-ly-danh-sach-bai-viet-pr(page=${currentPage + 1}, key =${key}, idChuDe = ${idChuDe}, trangThai = ${trangThai}, idDotVietBai = ${idDotVietBai})}">Tiếp</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <div class="pagination justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang(page=${currentPage - 1}, key =${key}, trangThai = ${trangThai})}">Trước</a>
+                        </li>
+                        <li class="page-item" th:if="${totalPages == 0}">
+                            <span class="page-link">0</span>
+                        </li>
+                        <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:unless="${totalPages == 0}"
+                            th:classappend="${i == currentPage} ? 'active'">
+                            <a class="page-link"
+                               th:href="@{/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang(page=${i}, key =${key}, trangThai = ${trangThai})}"
+                               th:text="${i + 1}">1</a>
+                        </li>
+                        <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/admin/tai-khoan-khach-hang/danh-sach-tai-khoan-khach-hang(page=${currentPage + 1}, key =${key}, trangThai = ${trangThai})}">Tiếp</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
